@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_bike
+    description: "Dimension table for bike type."
+    columns:
+      - name: bike_id
+        description: "The primary key for this table"
+        tests:
+          - unique:
+              # Comment the line 'arguments:' to work on older versions of dbt (dbt-core < 1.10 and below)
+              arguments:
+                severity: error # accepts only `error` and `warn` default is error
+          - not_null
+  - name: dim_station
+    description: "Dimension table for station."
+    columns:
+      - name: station_id
+        description: "The primary key for this table"
+        tests:
+          - unique:
+              # Comment the line 'arguments:' to work on older versions of dbt (dbt-core < 1.10 and below)
+              arguments:
+                severity: error # accepts only `error` and `warn` default is error
+          - not_null

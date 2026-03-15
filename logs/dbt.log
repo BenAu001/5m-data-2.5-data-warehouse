@@ -1,0 +1,91 @@
+[0m15:31:12.213402 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd5472d1990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd547258390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd5472d3bd0>]}
+
+
+============================== 15:31:12.224923 | fc0fc9fc-c3be-42f7-ba0e-942d51bb41e3 ==============================
+[0m15:31:12.224923 [info ] [MainThread]: Running with dbt=1.10.9
+[0m15:31:12.226527 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'static_parser': 'True', 'log_path': 'logs', 'indirect_selection': 'eager', 'log_format': 'default', 'version_check': 'True', 'target_path': 'None', 'no_print': 'None', 'log_cache_events': 'False', 'profiles_dir': '/home/auyan/.dbt', 'write_json': 'True', 'use_colors': 'True', 'introspect': 'True', 'quiet': 'False', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt init austin_bikeshare_demo', 'warn_error': 'None', 'debug': 'False', 'empty': 'None'}
+[0m15:31:12.277628 [debug] [MainThread]: Starter project path: /home/auyan/miniconda3/envs/elt/lib/python3.11/site-packages/dbt/include/starter_project
+[0m15:31:12.302694 [info ] [MainThread]: 
+Your new dbt project "austin_bikeshare_demo" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:31:12.304121 [info ] [MainThread]: Setting up your profile.
+[0m15:32:55.900993 [info ] [MainThread]: Profile austin_bikeshare_demo written to /home/auyan/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m15:32:55.902973 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 103.84046, "process_in_blocks": "402224", "process_kernel_time": 11.230701, "process_mem_max_rss": "370868", "process_out_blocks": "80", "process_user_time": 19.631342}
+[0m15:32:55.904591 [debug] [MainThread]: Command `dbt init` succeeded at 15:32:55.904345 after 103.84 seconds
+[0m15:32:55.905435 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd54725ae50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd54bb2ca10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd54baac350>]}
+[0m15:32:55.906297 [debug] [MainThread]: Flushing usage events
+[0m15:32:58.717370 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:33:09.235185 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9f299aab10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9f299aa9d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9f2c63f650>]}
+
+
+============================== 15:33:09.243583 | 00d4dd31-945c-4ef9-a95e-230504c5085b ==============================
+[0m15:33:09.243583 [info ] [MainThread]: Running with dbt=1.10.9
+[0m15:33:09.244917 [debug] [MainThread]: running dbt with arguments {'log_path': 'logs', 'debug': 'False', 'use_colors': 'True', 'log_cache_events': 'False', 'indirect_selection': 'eager', 'write_json': 'True', 'warn_error': 'None', 'empty': 'None', 'version_check': 'True', 'printer_width': '80', 'profiles_dir': '/home/auyan/.dbt', 'target_path': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'no_print': 'None', 'fail_fast': 'False', 'static_parser': 'True', 'introspect': 'True', 'partial_parse': 'True', 'invocation_command': 'dbt debug', 'cache_selected_only': 'False', 'log_format': 'default', 'use_experimental_parser': 'False', 'send_anonymous_usage_stats': 'True'}
+[0m15:33:09.268264 [info ] [MainThread]: dbt version: 1.10.9
+[0m15:33:09.269521 [info ] [MainThread]: python version: 3.11.14
+[0m15:33:09.270455 [info ] [MainThread]: python path: /home/auyan/miniconda3/envs/elt/bin/python
+[0m15:33:09.271195 [info ] [MainThread]: os info: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+[0m15:33:36.119430 [info ] [MainThread]: Using profiles dir at /home/auyan/.dbt
+[0m15:33:36.120760 [info ] [MainThread]: Using profiles.yml file at /home/auyan/.dbt/profiles.yml
+[0m15:33:36.121569 [info ] [MainThread]: Using dbt_project.yml file at /home/auyan/5m-data-2.5-data-warehouse/dbt_project.yml
+[0m15:33:36.122381 [info ] [MainThread]: adapter type: bigquery
+[0m15:33:36.123042 [info ] [MainThread]: adapter version: 1.10.3
+[0m15:33:36.123711 [info ] [MainThread]: Configuration:
+[0m15:33:36.124431 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m15:33:36.125050 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m15:33:36.125630 [info ] [MainThread]: Required dependencies:
+[0m15:33:36.126519 [debug] [MainThread]: Executing "git --help"
+[0m15:33:36.131151 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m15:33:36.132217 [debug] [MainThread]: STDERR: "b''"
+[0m15:33:36.132977 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m15:33:36.133713 [info ] [MainThread]: Connection:
+[0m15:33:36.134440 [info ] [MainThread]:   method: oauth
+[0m15:33:36.135088 [info ] [MainThread]:   database: project-8ca65d76-c080-42ce-907
+[0m15:33:36.135811 [info ] [MainThread]:   execution_project: project-8ca65d76-c080-42ce-907
+[0m15:33:36.136757 [info ] [MainThread]:   schema: austin_bikeshare_demo
+[0m15:33:36.137506 [info ] [MainThread]:   location: US
+[0m15:33:36.138205 [info ] [MainThread]:   priority: interactive
+[0m15:33:36.138971 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m15:33:36.139756 [info ] [MainThread]:   impersonate_service_account: None
+[0m15:33:36.140687 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m15:33:36.141432 [info ] [MainThread]:   job_retries: 1
+[0m15:33:36.142186 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m15:33:36.143364 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m15:33:36.144640 [info ] [MainThread]:   timeout_seconds: 300
+[0m15:33:36.145390 [info ] [MainThread]:   client_id: None
+[0m15:33:36.146061 [info ] [MainThread]:   token_uri: None
+[0m15:33:36.146724 [info ] [MainThread]:   compute_region: None
+[0m15:33:36.147312 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m15:33:36.148491 [info ] [MainThread]:   gcs_bucket: None
+[0m15:33:36.149348 [info ] [MainThread]:   dataproc_batch: None
+[0m15:33:36.150482 [info ] [MainThread]: Registered adapter: bigquery=1.10.3
+[0m15:33:36.518101 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m15:33:36.519146 [debug] [MainThread]: On debug: select 1 as id
+[0m15:33:36.520136 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:33:42.949847 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=project-8ca65d76-c080-42ce-907&j=bq:US:f713a064-ba90-4b71-a5fd-8d22b90114d6&page=queryresults
+[0m15:33:44.084880 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m15:33:44.086031 [info ] [MainThread]: [31m1 check failed:[0m
+[0m15:33:44.087274 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </home/auyan/5m-data-2.5-data-warehouse/dbt_project.yml> not found
+
+[0m15:33:44.088766 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 34.998848, "process_in_blocks": "2624", "process_kernel_time": 12.257218, "process_mem_max_rss": "376188", "process_out_blocks": "24", "process_user_time": 20.5162}
+[0m15:33:44.089820 [debug] [MainThread]: Command `dbt debug` failed at 15:33:44.089591 after 35.00 seconds
+[0m15:33:44.090877 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m15:33:44.092181 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9f299b1910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9f29933290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9e62153d10>]}
+[0m15:33:44.093107 [debug] [MainThread]: Flushing usage events
+[0m15:33:45.304149 [debug] [MainThread]: An error was encountered while trying to flush usage events

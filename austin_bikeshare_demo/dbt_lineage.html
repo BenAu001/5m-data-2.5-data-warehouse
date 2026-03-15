@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Austin Bikeshare — dbt Lineage</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px;
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #f8fafc;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 32px;
+    }
+    .diagram-card {
+      background: #1e2230;
+      border: 1px solid #2d3348;
+      border-radius: 14px;
+      padding: 32px 40px;
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: center;
+    }
+    .mermaid {
+      width: 100%;
+    }
+    .legend {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+    }
+    .info-grid {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      width: 100%;
+      max-width: 900px;
+    }
+    .info-card {
+      background: #1e2230;
+      border: 1px solid #2d3348;
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .info-card h3 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+    .info-card ul {
+      list-style: none;
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+    .tag {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+    .tag-source  { background: #1e3a5f; color: #60a5fa; }
+    .tag-snap    { background: #3b1f5e; color: #c084fc; }
+    .tag-dim     { background: #14432a; color: #4ade80; }
+    .tag-fact    { background: #4a2415; color: #fb923c; }
+  </style>
+</head>
+<body>
+
+  <h1>Austin Bikeshare — dbt Lineage Graph</h1>
+  <p class="subtitle">Data flow from raw BigQuery sources through snapshots and models</p>
+
+  <div class="diagram-card">
+    <div class="mermaid">
+flowchart LR
+
+  %% ── Sources ─────────────────────────────────────────────
+  subgraph SRC ["☁️  BigQuery Source: austin_bikeshare"]
+    direction TB
+    S1["📦 bikeshare_stations"]
+    S2["📦 bikeshare_trips"]
+  end
+
+  %% ── Snapshot ─────────────────────────────────────────────
+  subgraph SNAP ["🔄  Snapshots  (SCD Type 2)"]
+    SS["station_snapshot\n(strategy: timestamp)"]
+  end
+
+  %% ── Dimension models ─────────────────────────────────────
+  subgraph DIMS ["📐  Dimensions  (star/)"]
+    direction TB
+    DB["dim_bike\n✔ unique + not_null"]
+    DS["dim_station\n✔ unique + not_null"]
+  end
+
+  %% ── Fact models ──────────────────────────────────────────
+  subgraph FACTS ["📊  Facts"]
+    FS["fact_sales"]
+    FB["fact_bikeshare_trips\n⚠ SQL not yet created"]
+  end
+
+  %% ── Edges ────────────────────────────────────────────────
+  S1 --> SS
+  SS --> DS
+  S2 --> DB
+  S2 --> FS
+  DB -.->|FK: bike_id| FB
+  DS -.->|FK: station_id\n(test commented out)| FB
+
+  %% ── Styles ───────────────────────────────────────────────
+  classDef source  fill:#1e3a5f,stroke:#3b82f6,color:#bfdbfe,rx:6
+  classDef snap    fill:#3b1f5e,stroke:#a855f7,color:#e9d5ff,rx:6
+  classDef dim     fill:#14432a,stroke:#22c55e,color:#bbf7d0,rx:6
+  classDef fact    fill:#4a2415,stroke:#f97316,color:#fed7aa,rx:6
+  classDef factWip fill:#2d2415,stroke:#ca8a04,color:#fef08a,rx:6,stroke-dasharray:5 5
+
+  class S1,S2 source
+  class SS snap
+  class DB,DS dim
+  class FS fact
+  class FB factWip
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="dot" style="background:#1e3a5f;border:1px solid #3b82f6"></div> Source (BigQuery)</div>
+    <div class="legend-item"><div class="dot" style="background:#3b1f5e;border:1px solid #a855f7"></div> Snapshot (SCD Type 2)</div>
+    <div class="legend-item"><div class="dot" style="background:#14432a;border:1px solid #22c55e"></div> Dimension model</div>
+    <div class="legend-item"><div class="dot" style="background:#4a2415;border:1px solid #f97316"></div> Fact model</div>
+    <div class="legend-item"><div class="dot" style="background:#2d2415;border:1px solid #ca8a04"></div> Fact model (WIP — no SQL yet)</div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>Sources used</h3>
+      <ul>
+        <li>bikeshare_stations <span class="tag tag-source">source</span></li>
+        <li>bikeshare_trips <span class="tag tag-source">source</span></li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>Snapshot</h3>
+      <ul>
+        <li>station_snapshot <span class="tag tag-snap">SCD2</span></li>
+        <li style="color:#64748b;font-size:0.75rem">unique key: station_id<br>updated_at: modified_date</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>Dimensions</h3>
+      <ul>
+        <li>dim_bike <span class="tag tag-dim">dim</span></li>
+        <li>dim_station <span class="tag tag-dim">dim</span></li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>Facts</h3>
+      <ul>
+        <li>fact_sales <span class="tag tag-fact">fact</span></li>
+        <li>fact_bikeshare_trips <span class="tag tag-fact">fact</span> <span class="tag" style="background:#2d2415;color:#fef08a">WIP</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark', flowchart: { curve: 'basis' } });
+  </script>
+</body>
+</html>
